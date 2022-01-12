@@ -1,0 +1,76 @@
+{% extends 'users/base.html' %}
+{% load static %}
+
+
+{% block extend_head %}
+
+{% endblock %}
+
+
+{% block extend_nav %}
+
+<ul class="sidenav">
+  <li><a class="active" href="{% url 'users:account' %}">Demo User Account</a></li>
+  <li><a href="{% url 'users:sign-out' %}">Sign out</a></li>
+</ul>
+
+{% endblock %}
+
+
+{% block content %}
+
+<h3>Django User Auth Demo - User Account</h3>
+
+<div class="container">
+
+  <h4>User account details</h4>
+  <table>
+    <thead>
+      <tr>
+        <th>Field</th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Email</td>
+        <td>{{request.user.email}}</td>      
+      </tr>
+      <tr>
+        <td>Organization</td>
+        <td>{{request.user.organizationprofile.organization_name}}</td>      
+      </tr>
+      <tr>
+        <td>Telephone</td>
+        <td>{{request.user.organizationprofile.phone_number}}</td>      
+      </tr>
+      <tr>
+        <td>Address</td>
+        <td>
+          <address>
+            {{request.user.organizationprofile.address}}<br>
+            {{request.user.organizationprofile.city}}<br>
+            {{request.user.organizationprofile.country}}<br>
+          </address>
+        </td>      
+      </tr>
+
+    </tbody>
+  </table>
+
+</div>
+
+<!-- This handels the verified url param & displays a success alert-->
+<script type="text/javascript">
+  var ver = "{{verified|safe}}"
+  if (ver == "true"){
+    alert("Thank you, your email has been verified")
+  }
+</script>
+
+{% endblock %}
+
+
+{% block extend_footer %}
+
+{% endblock %}

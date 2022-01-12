@@ -1,0 +1,64 @@
+{% extends 'users/base.html' %} {% load static %} {% block extend_head %} {% endblock %} {% block extend_nav %}
+
+<ul class="sidenav">
+  <li><a href="{% url 'users:sign-in' %}">Demo Sign In</a></li>
+  <li><a class="active" href="{% url 'users:sign-up' %}">Demo Sign Up</a></li>
+  <li>
+    <a href="{% url 'users:forgotten-password' %}">Demo Forgotten Password</a>
+  </li>
+</ul>
+
+{% endblock %} {% block content %}
+
+<h3>Django User Auth Demo - Sign Up</h3>
+
+<div class="container">
+  <form id="signupform" method="POST" action="/sign-up">
+    {% csrf_token %}
+
+    <!-- <label for="username">Username</label>
+    {{u_form.username}} -->
+
+    <label for="email">Email</label>
+    {{u_form.email}}
+
+    <label for="password1">Password</label>
+    {{u_form.password1}}
+
+    <label for="password2">Confirm Password</label>
+    {{u_form.password2}}
+
+    <label class="check-container">
+      Show Passwords
+      <input type="checkbox" onclick="showPword()" />
+      <span class="checkmark"></span>
+    </label>
+
+    <label for="first_name">First Name</label>
+    {{u_form.first_name}}
+
+    <label for="last_name">Last Name</label>
+    {{u_form.last_name}}
+
+    <label for="address">Address</label>
+    {{op_form.address}}
+
+    <label for="city">Town/City</label>
+    {{op_form.city}}
+
+    <label for="country">Country</label>
+    {{op_form.country}}
+
+    <label for="organization_name">Organization name</label>
+    {{op_form.organization_name}}
+
+    <label for="phone_number">Telephone</label>
+    {{op_form.phone_number}}
+
+    <button type="submit">Sign up</button>
+  </form>
+
+  {{u_form.errors}} {{op_form.errors}}
+</div>
+
+{% endblock %} {% block extend_footer %} {% endblock %}
